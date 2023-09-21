@@ -45,7 +45,7 @@ class PlayScene extends BaseScene {
 
         this.anims.create({
             key: 'fly',
-            frames: this.anims.generateFrameNumbers('player', { start: 1, end: 8 }),
+            frames: this.anims.generateFrameNumbers('player', { start: 0, end: 7 }),
             frameRate: 8, // 24 FPS default, 24 frames in 1 second
             repeat: -1 // Repeat infinitely
         });
@@ -60,6 +60,10 @@ class PlayScene extends BaseScene {
     listenToEvents() {
         if (this.pauseEvent) return;
         this.pauseEvent = this.events.on('resume', () => {
+            if (this.timedEvent) {
+                this.timedEvent.remove();
+                this.countdownText.setText('');
+            }
             this.initialTime = 3;
             this.countdownText = this.add.text(...this.screenCenter, `Fly in ${this.initialTime}`, this.fontOptions).setOrigin(0.5);
             this.timedEvent = this.time.addEvent({
