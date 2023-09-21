@@ -91,7 +91,7 @@ class PlayScene extends BaseScene {
             .setFlipX(true)
             .setScale(3)
             .setOrigin(0);
-        this.player.setBodySize(this.player.width - 2, this.player.height - 6);
+        this.player.setBodySize(this.player.width - 2, this.player.height - 8).setOffset(1, 6);
         this.player.body.gravity.y = 400;
         this.player.setCollideWorldBounds(true);
     }
